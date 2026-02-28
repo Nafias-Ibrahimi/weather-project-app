@@ -10,22 +10,21 @@ function toFahrenheit(celsius){
 
 function showTemperature(celsius){
     const fahrenheit = toFahrenheit(celsius);
-    document.querySelector(".temp").textContent = Math.round(celsius) + "°C | " + fahrenheit + "°F";
+      // Problem Here
+    document.querySelector(".temp").textContent = `${Math.round(celsius)}°C |  ${fahrenheit}°F`;
 
 }
 async function checkWeather(city = 'tunisia'){
     const res = await fetch(URL + city + `&appid=${APIKEY}`);
     let data = await res.json();
     console.log(data);
-
+// Problem Here
     let celsius=data.main.temp;
-    let fahrenheit=toFahrenheit(celsius);
-    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".city").textContent = data.name;
     showTemperature(celsius);
   
-    document.querySelector(".temp").innerHTML = Math.floor(data.main.temp) + "°c";
-    document.querySelector(".humidity").innerHTML = data.main.humidity + "+";
-    document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
+    document.querySelector(".humidity").textContent = data.main.humidity + "+";
+    document.querySelector(".wind").textContent = data.wind.speed + " Km/h";
 }
 
 searchBtn.addEventListener("click", ()=>{
